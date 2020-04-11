@@ -2,9 +2,9 @@
 
 `pip install -U https://github.com/JinnLynn/genpac/archive/dev.zip`
 
-### Install polipo
+### ~~Install polipo~~
 
-`sudo apt install polipo`
+~~`sudo apt install polipo`~~
 
 ### Sample
 
