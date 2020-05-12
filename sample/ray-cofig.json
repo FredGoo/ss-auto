@@ -1,97 +1,59 @@
 {
-	"inbounds": [{
-		"port": 1081, 
-		"listen": "0.0.0.0",
-		"protocol": "http",
-		"sniffing": {
-			"enabled": true,
-			"destOverride": ["http", "tls"]
-		},
-		"settings": {
-			"auth": "noauth"
-		}
-	},{
-		"port": 1082, 
-		"listen": "0.0.0.0",
-		"protocol": "socks",
-		"sniffing": {
-			"enabled": true,
-			"destOverride": ["http", "tls"]
-		},
-		"settings": {
-			"auth": "noauth"
-		}
-	}],
-	"outbounds": [{
-		"protocol": "vmess",
-		"tag": "proxy",
-		"settings": {
-			"vnext": [{
-				"address": "",
-				"port": ,
-				"users": [{ 
-					"id": "",
-					"alterId": 2
-				}]
-			}]
-		},
-		"streamSettings": {
-			"network": "ws",
-			"wsSettings": {
-				"path": ""
-			},
-			"headers": {
-				"Host": ""
-			}
-
-		}
-
-	},
-	{
-		"protocol": "freedom",
-		"tag": "direct",
-		"settings": {}
-	},
-	{
-		"protocol": "blackhole",
-		"settings": {},
-		"tag": "adblock"
-	}],
-	"routing": {
-		"domainStrategy": "IPIfNonMatch",
-		"rules":
-		[{
-			"type": "field",
-			"outboundTag": "direct",
-			"ip": [
-				"geoip:cn",
-				"geoip:private"
-			]
-		},
-		{
-			"type": "field",
-			"outboundTag": "proxy",
-			"domain": [
-				"geosite:geolocation-!cn"
-			]
-		},
-		{
-			"type": "field",
-			"outboundTag": "adblock",
-			"domain": [
-				"geosite:category-ads"
-			]
-		}]
-	},
-	"api":{
-		"tag": "api",
-		"services": [
-			"HandlerService",
-			"LoggerService",
-			"StatsService"
-		]
-	},
-	"log": {
-		"loglevel":"info"
-	}
+  "inbounds": [
+    {
+      "port": 1081,
+      "listen": "0.0.0.0",
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "auth": "noauth"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "tag": "proxy",
+      "settings": {
+        "vnext": [
+          {
+            "address": "",
+            "port": 80,
+            "users": [
+              {
+                "id": "",
+                "alterId": 2
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": ""
+        },
+        "headers": {
+          "Host": ""
+        }
+      }
+    }
+  ],
+  "api": {
+    "tag": "api",
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ]
+  },
+  "log": {
+    "loglevel": "info"
+  }
 }
